@@ -1,6 +1,6 @@
 # ar-facedoodle
 
-A reverse engineer of @cyrildiagne AR Facedoodle demo.
+The corresponding repo for the blog post "Reverse Engineer: AR Facedoodle"
 
 ## Building and running on localhost
 
@@ -30,4 +30,4 @@ node dist/bundle.js
 
 ## Credits
 
-Made with [createapp.dev](https://createapp.dev/)
+Project setup with [createapp.dev](https://createapp.dev/) and inspired by [@cyrildiagne](https://github.com/cyrildiagne)'s ar-facedoodle project.
