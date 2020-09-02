@@ -1,8 +1,10 @@
 import * as THREE from 'three';
 
 let camera;
+let raycaster;
 let renderer;
 let scene;
+let threeEl;
 let videoTexture;
 
 function init(video) {
@@ -23,7 +25,14 @@ function init(video) {
   renderer = new THREE.WebGLRenderer();
   // renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
-  document.body.appendChild(renderer.domElement);
+  threeEl = renderer.domElement;
+  document.querySelector('.container').prepend(threeEl);
+
+  renderer.domElement.addEventListener('mousedown', onMouseDown);
+  window.addEventListener('mouseup', onMouseUp);
+
+  // Init Raycaster.
+  raycaster = new THREE.Raycaster();
 
   addVideoSprite(video);
 
@@ -54,6 +63,28 @@ function addVideoSprite(video) {
   // videoSprite.position.copy(camera.position);
   // videoSprite.position.z = 0;
   scene.add(videoSprite);
+}
+
+function draw(point) {
+  const x = (point.x / renderer.domElement.clientWidth) * 2 - 1;
+  const y = -(point.y / renderer.domElement.clientHeight) * 2 + 1;
+  console.log('point, x, y', point, x, y);
+}
+
+function onMouseDown() {
+  window.addEventListener('mousemove', onMouseMove);
+}
+
+function onMouseMove(evt) {
+  const rect = threeEl.getBoundingClientRect();
+  const x = rect.width - (evt.clientX - rect.x);
+  const y = evt.clientY - rect.y;
+  draw({ x, y });
+}
+
+function onMouseUp() {
+  // end();
+  window.removeEventListener('mousemove', onMouseMove);
 }
 
 export default init;
