@@ -12,6 +12,9 @@
     "build-prod": "parcel build index.html"
   },
   "dependencies": {
+    "@tensorflow-models/facemesh": "^0.0.4",
+    "@tensorflow/tfjs-converter": "^2.3.0",
+    "@tensorflow/tfjs-core": "^2.3.0",
     "three": "^0.120.1"
   },
   "devDependencies": {
